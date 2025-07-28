@@ -16,7 +16,7 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`${server}/register`, formData);
+            const response = await axios.post(`${server}/api/register`, formData);
             setMessage("Registration successful!");
             // Navigate to login page after successful registration
             setTimeout(() => {
