@@ -1,37 +1,28 @@
 import "./ChatWindow.css";
 import Chat from "./Chat.jsx";
 import { MyContext } from "./MyContext.jsx";
-import { useContext, useState } from "react";
+import { useContext, useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ScaleLoader } from "react-spinners";
 import server from "./envirnoment.js";
 
-function ChatWindow() {
+function ChatWindow({ toggleSidebar }) {
   const navigate = useNavigate();
-  const {
-    prompt,
-    setPrompt,
-    currentThreadId,
-    setPrevChats,
-    setNewChat
-  } = useContext(MyContext);
+   const {prompt, setPrompt, reply, setReply, currThreadId, setPrevChats, setNewChat} = useContext(MyContext);
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const getReply = async () => {
-    const trimmed = prompt.trim();
-    if (!trimmed) return;
-
     setLoading(true);
     setNewChat(false);
-    setPrompt(""); // Clear input immediately
+   
 
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        message: trimmed,
-        threadId: currentThreadId
+        message: prompt,
+        threadId: currThreadId
       })
     };
 
@@ -41,37 +32,40 @@ function ChatWindow() {
 
       if (!response.ok) throw new Error(res.error || response.statusText);
       if (!res.reply) throw new Error("No reply received");
-
-      setPrevChats(prev => [
-        ...prev,
-        { role: "user", content: trimmed },
-        { role: "assistant", content: res.reply }
-      ]);
+      setReply(res.reply);
     } catch (err) {
       console.error("Error fetching reply:", err);
-      setPrevChats(prev => [
-        ...prev,
-        { role: "assistant", content: "Something went wrong. Try again later." }
-      ]);
-    } finally {
-      setLoading(false);
     }
+    setLoading(false);
+   
   };
 
-  const handleKeyDown = e => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      getReply();
+  useEffect(() => {
+    if(prompt && reply) {
+      setPrevChats(prevChats => (
+        [...prevChats, {
+          role: "user",
+          content: prompt
+        },{
+          role: "assistant",
+          content: reply
+        }]
+      ));
     }
-  };
+    setPrompt("");
+  }, [reply]);
 
-  const toggleProfile = () => setIsOpen(open => !open);
+
+  const handleProfileClick = () => setIsOpen(open => !open);
 
   return (
     <div className="chatwindow">
       <div className="navbar">
-        <span>SigmaGPT <i className="fa-solid fa-chevron-down"></i></span>
-        <div className="userIconDiv" onClick={toggleProfile}>
+        <div className="hamburger" onClick={toggleSidebar}>
+          <i className="fa-solid fa-bars"></i>
+        </div>
+        <span>AlphaGPT <i className="fa-solid fa-chevron-down"></i></span>
+        <div className="userIconDiv" onClick={handleProfileClick}>
           <span className="userIcon"><i className="fa-solid fa-user"></i></span>
         </div>
       </div>
@@ -103,7 +97,7 @@ function ChatWindow() {
             placeholder="Ask anything"
             value={prompt}
             onChange={e => setPrompt(e.target.value)}
-            onKeyDown={handleKeyDown}
+            onKeyDown={(e) => e.key === 'Enter'? getReply() : ''}
           />
         </div>
         <div id="submit" onClick={getReply}>

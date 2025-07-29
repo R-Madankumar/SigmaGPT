@@ -4,7 +4,7 @@ import { MyContext } from "./MyContext";
 import {v1 as uuidv1} from "uuid";
 import server from "./envirnoment";
 
-function Sidebar() {
+function Sidebar({ sidebarOpen, closeSidebar }) {
     const {allThreads , setAllThreads,currThreadId,setNewChat,setPrompt,setReply,setCurrThreadId,setPrevChats} = useContext(MyContext);
 
     const getAllThreads = async ()=>{
@@ -74,8 +74,8 @@ function Sidebar() {
 
 
     return ( 
-       <section className="Sidebar">
-            <button onClick={createNewChat}>
+       <section  className={`Sidebar ${sidebarOpen ? "open" : ""}`}>
+            <button onClick={() => { createNewChat(); closeSidebar(); }}>
                 <img src="src/assets/blacklogo.png" alt="GPT logo" className="logo" />
                 <span><i className="fa-solid fa-pen-to-square"></i></span>
             </button>
@@ -100,7 +100,7 @@ function Sidebar() {
             </ul>
 
             <div className="sign">
-                <p>By Apna College</p>
+                <p>By Madan Kumar</p>
             </div>
        </section>
     );

@@ -83,3 +83,25 @@ button:hover{
     background-color: rgba(180,180,180,0.05);
     border-radius: 10px;
 }
+
+.Sidebar {
+  width: 300px;
+  background-color: #1a1a1a;
+  height: 100vh;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+  .Sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+    z-index: 1000;
+  }
+
+  .Sidebar.open {
+    transform: translateX(0);
+  }
+}

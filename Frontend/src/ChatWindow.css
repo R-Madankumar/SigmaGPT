@@ -143,3 +143,96 @@ input:focus{
     background-color: rgba(180,180,180,0.1);
     border-radius: 6px;
 }
+
+
+/* 📱 Mobile responsiveness */
+@media screen and (max-width: 768px) {
+
+  .chatwindow {
+    padding: 0 10px;
+    overflow-y: auto;
+    justify-content: flex-start;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .navbar span {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
+
+  .userIconDiv {
+    margin: 0.5rem 0;
+  }
+
+  .userIcon {
+    height: 30px;
+    width: 30px;
+  }
+
+  .dropDown {
+    right: 1rem;
+    top: 3.5rem;
+    width: 100%;
+    max-width: 200px;
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .chatInput {
+    padding: 0 10px;
+    bottom: 20px;
+  }
+
+  .inputBox {
+    left: 0;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  input {
+    font-size: 1rem;
+    padding: 14px 12px;
+  }
+
+  #submit {
+    position: static;
+    height: 40px;
+    width: 40px;
+    font-size: 22px;
+  }
+
+  .info {
+    font-size: 0.75rem;
+    text-align: center;
+    padding: 0.5rem;
+  }
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+  color: #fff;
+  z-index: 1000; /* ensures it stays above sidebar */
+}
+
+
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+  .info {
+    display: none;
+  }
+}

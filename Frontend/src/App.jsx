@@ -8,7 +8,7 @@ import AppRoutes from './AppRoutes.jsx'; // ⬅️ This handles all routing now
 function App() {
   const [prompt , setPrompt] = useState("");
   const [reply , setReply] = useState(null);
-  const [currentThreadId, setCurrThreadId] = useState(uuidv1());
+  const [currThreadId, setCurrThreadId] = useState(uuidv1());
   const [prevChats , setPrevChats] = useState([]);
   const [newChat, setNewChat] = useState(true);
   const [allThreads , setAllThreads] = useState([]);
@@ -16,7 +16,7 @@ function App() {
   const providerValues = {
     prompt, setPrompt,
     reply, setReply,
-    currentThreadId, setCurrThreadId,
+    currThreadId, setCurrThreadId,
     newChat, setNewChat,
     prevChats, setPrevChats,
     allThreads, setAllThreads
