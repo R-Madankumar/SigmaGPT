@@ -76,7 +76,7 @@ function Sidebar({ sidebarOpen, closeSidebar }) {
     return ( 
        <section  className={`Sidebar ${sidebarOpen ? "open" : ""}`}>
             <button onClick={() => { createNewChat(); closeSidebar(); }}>
-                <img src="src/assets/blacklogo.png" alt="GPT logo" className="logo" />
+                <img src="public/blacklogo.png" alt="GPT logo" className="logo" />
                 <span><i className="fa-solid fa-pen-to-square"></i></span>
             </button>
          

@@ -242,4 +242,7 @@ input:focus{
   .info {
     display: none;
   }
+  .submit{
+    display: none;
+  }
 }
