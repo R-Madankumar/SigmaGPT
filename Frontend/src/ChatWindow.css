@@ -190,7 +190,8 @@ input:focus{
   align-items: center;
   position: fixed; /* 👈 Changed */
   bottom: 0;        /* 👈 Stick to bottom */
-  padding: 0 20px;
+  padding: 0;
+  right: 20px;
   box-sizing: border-box;
   background-color: #212121; /* Optional: match background */
   z-ind
@@ -204,10 +205,7 @@ input:focus{
     max-width: 100%;
   }
 
-  input {
-    font-size: 1rem;
-    padding: 14px 12px;
-  }
+
 
   #submit {
     position: static;
@@ -242,7 +240,8 @@ input:focus{
   .info {
     display: none;
   }
-  .submit{
+  #submit{
     display: none;
   }
+}
 }
