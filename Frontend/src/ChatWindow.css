@@ -133,15 +133,15 @@ input:focus{
 }
 
 .dropDownItem{
-    font-size: 0.9rem;
-    margin:0.3rem 0rem;
-    padding: 0.5rem 0.2rem;
-    cursor: pointer;
+  font-size: 0.9rem;
+  margin:0.3rem 0rem;
+  padding: 0.5rem 0.2rem;
+  cursor: pointer;
 }
 
 .dropDownItem:hover{
-    background-color: rgba(180,180,180,0.1);
-    border-radius: 6px;
+  background-color: rgba(180,180,180,0.1);
+  border-radius: 6px;
 }
 
 
@@ -184,9 +184,16 @@ input:focus{
   }
 
   .chatInput {
-    padding: 0 10px;
-    bottom: 20px;
-  }
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed; /* 👈 Changed */
+  bottom: 0;        /* 👈 Stick to bottom */
+  padding: 0 20px;
+  box-sizing: border-box;
+  background-color: #212121; /* Optional: match background */
+  z-ind
 
   .inputBox {
     left: 0;
